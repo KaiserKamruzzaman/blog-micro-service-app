@@ -1,13 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CommentCreate from "./CommentCreate";
+import CommentList from "./CommentList";
 
 const PostLists = () => {
   const [posts, setPosts] = useState({});
 
   useEffect(() => {
     fetchPosts();
-  }, [posts]);
+  }, []);
   const fetchPosts = async () => {
     const res = await axios.get("http://localhost:4000/posts");
     setPosts(res.data);
@@ -18,13 +20,8 @@ const PostLists = () => {
       <div className="" key={post.id}>
         Title: {post.title}
         <br></br>
-        <label>Comment:</label>
-        <form>
-          <input
-            className="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            type="text"
-          />
-        </form>
+        <CommentList postId={post.id} />
+        <CommentCreate postId={post.id} />
       </div>
     );
   });
