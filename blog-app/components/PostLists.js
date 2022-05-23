@@ -7,20 +7,21 @@ import CommentList from "./CommentList";
 const PostLists = () => {
   const [posts, setPosts] = useState({});
 
+  const fetchPosts = async () => {
+    const res = await axios.get("http://localhost:4002/posts");
+    setPosts(res.data);
+  };
+
   useEffect(() => {
     fetchPosts();
   }, []);
-  const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:4000/posts");
-    setPosts(res.data);
-  };
 
   const renderPosts = Object.values(posts).map((post) => {
     return (
       <div className="" key={post.id}>
         Title: {post.title}
         <br></br>
-        <CommentList postId={post.id} />
+        <CommentList comments={post.comments} />
         <CommentCreate postId={post.id} />
       </div>
     );
