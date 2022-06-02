@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { default: axios } = require("axios");
 const cors = require("cors");
 
 const app = express();
@@ -45,6 +46,16 @@ app.post("/events", (req, res) => {
   res.send({});
 });
 
-app.listen(4002, () => {
+app.listen(4002, async () => {
   console.log("Listening port 4002: Query..");
+  try {
+    const res = await axios.get("http://localhost:4005/events");
+    console.log(res.data);
+    for (let event of res.data) {
+      console.log("processing event ....", event.type);
+      handleEvent(event.type, event.data);
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
 });
