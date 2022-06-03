@@ -18,9 +18,13 @@ const PostLists = () => {
 
   const renderPosts = Object.values(posts).map((post) => {
     return (
-      <div className="" key={post.id}>
-        Title: {post.title}
+      <div
+        className="mt-3 p-2 text-center  mb-2 max-w-sm rounded overflow-hidden shadow-lgmax-w-sm rounded overflow-hidden shadow-lg"
+        key={post.id}
+      >
+        <span className="font-bold ">Post Title</span>: {post.title}
         <br></br>
+        <hr></hr>
         <CommentList comments={post.comments} />
         <CommentCreate postId={post.id} />
       </div>

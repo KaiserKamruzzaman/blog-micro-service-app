@@ -13,25 +13,25 @@ const CommentCreate = ({ postId }) => {
     setContent("");
   };
   return (
-    <div>
+    <div className="">
       {" "}
       <form>
-        <label>Comment:</label>
         <input
           value={content}
           onChange={(e) => {
             setContent(e.target.value);
           }}
-          className=" shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          placeholder="Enter Your Comment.."
+          className="mt-2 shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           type="text"
         />{" "}
         <br></br>
         <button
           type="submit"
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded mb-5 mt-2 block"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-2 rounded mb-1 ml-16 mt-2 block"
           onClick={createCommentHandler}
         >
-          Submit Comment
+          ADD
         </button>
       </form>
     </div>
